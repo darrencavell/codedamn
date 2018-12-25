@@ -25,32 +25,13 @@ export default class App extends Component {
   constructor(){
     super();
     this.state = {}
-    this.state.custom = {
-      color: 'pink'
-    }
 
-    setInterval(() => {
-      if(this.state.custom.color == 'pink'){
-        this.setState({
-          custom: {
-            color: 'green'
-          }
-        })
-      }else{
-        this.setState({
-          custom: {
-            color: 'pink'
-          }
-        })
-      }
-    }, 1000);
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.welcome, this.state.custom]}>Welcome Darren Cavell!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={[styles.half, styles.red]}></View>
+        <View style={[styles.half, styles.yellow]}></View>
       </View>
     );
   }
@@ -59,18 +40,15 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'row'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  half: {
+    flex: 1,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  yellow:{
+    backgroundColor: 'yellow'
   },
+  red: {
+    backgroundColor: 'red'
+  }
 });
