@@ -11,7 +11,8 @@ import {
   Platform, 
   StyleSheet, 
   Text, 
-  View
+  View,
+  TextInput
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -22,16 +23,28 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state = {}
-
+    this.state = {
+      value: "Edit Me!"
+    }
+    this.handleChangeText = this.handleChangeText.bind(this)
   }
+
+  handleChangeText(newText) {
+    this.setState({
+      value: newText
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={[styles.half, styles.red]}></View>
-        <View style={[styles.half, styles.yellow]}></View>
+        <TextInput
+          defaultValue={this.state.value}
+          onChangeText={this.handleChangeText}
+        />
+        <Text>You are writing {this.state.value}</Text>
       </View>
     );
   }
@@ -39,16 +52,6 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  half: {
-    flex: 1,
-  },
-  yellow:{
-    backgroundColor: 'yellow'
-  },
-  red: {
-    backgroundColor: 'red'
+    flex: 1
   }
 });
