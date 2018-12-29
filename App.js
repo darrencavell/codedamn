@@ -20,16 +20,38 @@ import {
 export default class App extends Component {
   constructor(){
     super();
-    this.state = {}
+    this.state = {
+      resultText: ''
+    }
+  }
+  calculateResult(){
+    const text = this.state.resultText
+  }
+  padOperate(operator){
+    switch(operator){
+      case 'c':
+      {
+        this.setState({
+          resultText: this.state.resultText.substring(0, this.state.resultText.length-1)
+        })
+      }
+    }
+  }
+  padPressed(text){
+    if(text == '=')
+      return this.calculateResult()
+    this.setState({
+      resultText: this.state.resultText + text
+    })
   }
   render(){
     let numpads = []
-    let nums = [[1,2,3], [4,5,6], [7,8,9], [' ', 0, '=']]
+    let nums = [[1,2,3], [4,5,6], [7,8,9], ['.', 0, '=']]
     for(let i = 0; i < 4; i++){
       let row = []
       for(let j = 0; j < 3; j++){
         row.push(
-          <TouchableOpacity style={styles.pad}>
+          <TouchableOpacity onPress={() => this.padPressed(nums[i][j])} style={styles.pad}>
             <Text style={styles.padText}>{nums[i][j]}</Text>
           </TouchableOpacity>
         )
@@ -37,17 +59,19 @@ export default class App extends Component {
       numpads.push(<View style={styles.row}>{row}</View>);
     }
     let oppads = []
-    let ops = ['+', '-', '*', '/']
-    for(let i = 0; i < 4; i++){
+    let ops = ['c', '+', '-', '*', '/']
+    for(let i = 0; i < 5; i++){
       oppads.push(
-        <TouchableOpacity style={styles.pad}>
+        <TouchableOpacity onPress={() => this.padOperate(ops[i])} style={styles.pad}>
           <Text style={styles.padText}>{ops[i]}</Text>
         </TouchableOpacity>
       )
     }
     return <View style={styles.container}>
         <View style={styles.result}>
-          <Text style={styles.resultText}>11*11</Text>
+          <Text style={styles.resultText}>
+            {this.state.resultText}
+          </Text>
         </View>
         <View style={styles.calculation}>
           <Text style={styles.calculationText}>121</Text>
