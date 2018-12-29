@@ -13,7 +13,8 @@ import {
   Text, 
   View,
   Button,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 
 export default class App extends Component {
@@ -22,6 +23,28 @@ export default class App extends Component {
     this.state = {}
   }
   render(){
+    let numpads = []
+    let nums = [[1,2,3], [4,5,6], [7,8,9], [' ', 0, '=']]
+    for(let i = 0; i < 4; i++){
+      let row = []
+      for(let j = 0; j < 3; j++){
+        row.push(
+          <TouchableOpacity style={styles.pad}>
+            <Text style={styles.padText}>{nums[i][j]}</Text>
+          </TouchableOpacity>
+        )
+      }
+      numpads.push(<View style={styles.row}>{row}</View>);
+    }
+    let oppads = []
+    let ops = ['+', '-', '*', '/']
+    for(let i = 0; i < 4; i++){
+      oppads.push(
+        <TouchableOpacity style={styles.pad}>
+          <Text style={styles.padText}>{ops[i]}</Text>
+        </TouchableOpacity>
+      )
+    }
     return <View style={styles.container}>
         <View style={styles.result}>
           <Text style={styles.resultText}>11*11</Text>
@@ -31,32 +54,10 @@ export default class App extends Component {
         </View>
         <View style={styles.buttons}>
           <View style={styles.numbers}>
-            <View style={styles.row}>
-              <Button title="0" style={styles.pad} />
-              <Button title="1" style={styles.pad}  />
-              <Button title="2" style={styles.pad}  />
-            </View>
-            <View style={styles.row}>
-              <Button title="3" />
-              <Button title="4" />
-              <Button title="5" />
-            </View>
-            <View style={styles.row}>
-              <Button title="6" />
-              <Button title="7" />
-              <Button title="8" />
-            </View>
-            <View style={styles.row}>
-              <Button title="0" />
-              <Button title="1" />
-              <Button title="2" />
-            </View>
+            {numpads}
           </View>
           <View style={styles.operations}>
-            <Button title="+" />
-            <Button title="-" />
-            <Button title="*" />
-            <Button title="/" />
+            {oppads}
           </View>
         </View>
       </View>;
@@ -102,7 +103,13 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   pad: {
-    flex: 1
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch"
+  },
+  padText: {
+    fontSize: 30
   },
   operations: {
     flex: 1,
