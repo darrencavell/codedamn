@@ -23,18 +23,37 @@ export default class App extends Component {
     this.state = {
       resultText: ''
     }
+    this.ops = ["c", "+", "-", "*", "/"]
+    this.nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ['.', 0, '=']]
   }
   calculateResult(){
     const text = this.state.resultText
+    text.split('+')
   }
   padOperate(operator){
     switch(operator){
       case 'c':
-      {
         this.setState({
           resultText: this.state.resultText.substring(0, this.state.resultText.length-1)
         })
-      }
+        break
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+        console.log(operator)
+        if(this.state.resultText == '') return
+        if(this.ops.indexOf(this.state.resultText.substring(this.state.resultText.length-1)) > 0){
+          console.log(this.state.resultText);
+          this.setState({
+            resultText: this.state.resultText.substring(0, this.state.resultText.length-1) + operator
+          })
+        }else {
+          this.setState({
+            resultText: this.state.resultText + operator
+          })
+        }
+        break
     }
   }
   padPressed(text){
@@ -46,28 +65,27 @@ export default class App extends Component {
   }
   render(){
     let numpads = []
-    let nums = [[1,2,3], [4,5,6], [7,8,9], ['.', 0, '=']]
     for(let i = 0; i < 4; i++){
       let row = []
       for(let j = 0; j < 3; j++){
         row.push(
-          <TouchableOpacity onPress={() => this.padPressed(nums[i][j])} style={styles.pad}>
-            <Text style={styles.padText}>{nums[i][j]}</Text>
+          <TouchableOpacity onPress={() => this.padPressed(this.nums[i][j])} style={styles.pad}>
+            <Text style={styles.padText}>{this.nums[i][j]}</Text>
           </TouchableOpacity>
         )
       }
       numpads.push(<View style={styles.row}>{row}</View>);
     }
     let oppads = []
-    let ops = ['c', '+', '-', '*', '/']
     for(let i = 0; i < 5; i++){
       oppads.push(
-        <TouchableOpacity onPress={() => this.padOperate(ops[i])} style={styles.pad}>
-          <Text style={styles.padText}>{ops[i]}</Text>
+        <TouchableOpacity onPress={() => this.padOperate(this.ops[i])} style={styles.pad}>
+          <Text style={styles.padText}>{this.ops[i]}</Text>
         </TouchableOpacity>
       )
     }
-    return <View style={styles.container}>
+    return(
+      <View style={styles.container}>
         <View style={styles.result}>
           <Text style={styles.resultText}>
             {this.state.resultText}
@@ -84,7 +102,8 @@ export default class App extends Component {
             {oppads}
           </View>
         </View>
-      </View>;
+      </View>
+    )
   }
 }
 
