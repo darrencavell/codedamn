@@ -16,8 +16,9 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-export default class App extends Component {
+class App extends Component {
   constructor(){
     super();
     this.state = {
@@ -95,6 +96,9 @@ export default class App extends Component {
     }
     return(
       <View style={styles.container}>
+        <View>
+          <Button onPress={() => this.props.navigation.navigate('test')} title="Go to Test"/>
+        </View>
         <View style={styles.result}>
           <Text style={styles.resultText}>
             {this.state.resultText}
@@ -113,6 +117,16 @@ export default class App extends Component {
         </View>
       </View>
     )
+  }
+}
+
+class Test extends Component {
+  render(){
+    return(
+      <View>
+        <Button onPress={() => this.props.navigation.navigate('home')} title="Go to Home"/>
+      </View>
+    );
   }
 }
 
@@ -171,3 +185,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+const AppNavigator = createStackNavigator({
+  home: {
+    screen: App
+  },
+  test: {
+    screen: Test
+  }
+});
+
+export default createAppContainer(AppNavigator);
