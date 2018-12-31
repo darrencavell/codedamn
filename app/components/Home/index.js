@@ -6,16 +6,20 @@ import {
   Button
 } from 'react-native';
 
+import styles from './styles';
+
 class Home extends Component {
   render(){
+    const {button, heading, input} = styles;
     return(
       <View>
-        <Text>Login into Application</Text>
-        <TextInput />
-        <TextInput />
         <View>
           <Button onPress={() => this.props.navigation.navigate('calculator')} title="Go to Calculator"/>
         </View>
+        <Text style={heading}>Login into Application</Text>
+        <TextInput style={input}/>
+        <TextInput style={input} secureTextEntry={true}/>
+        <Button style={button} title={"Hello"}/>
       </View>
     );
   }
