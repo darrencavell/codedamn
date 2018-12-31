@@ -21,14 +21,17 @@ export default class App extends Component {
   constructor(){
     super();
     this.state = {
-      resultText: ''
+      resultText: '',
+      calculationText: ''
     }
     this.ops = ["c", "+", "-", "*", "/"]
     this.nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ['.', 0, '=']]
   }
   calculateResult(){
     const text = this.state.resultText
-    text.split('+')
+    this.setState({
+      calculationText: eval(text)
+    })
   }
   padOperate(operator){
     switch(operator){
@@ -92,7 +95,7 @@ export default class App extends Component {
           </Text>
         </View>
         <View style={styles.calculation}>
-          <Text style={styles.calculationText}>121</Text>
+          <Text style={styles.calculationText}>{this.state.calculationText}</Text>
         </View>
         <View style={styles.buttons}>
           <View style={styles.numbers}>
