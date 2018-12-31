@@ -24,7 +24,7 @@ export default class App extends Component {
       resultText: '',
       calculationText: ''
     }
-    this.ops = ["c", "+", "-", "*", "/"]
+    this.ops = ["DEL", "+", "-", "*", "/"]
     this.nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ['.', 0, '=']]
   }
   validate(){
@@ -41,7 +41,7 @@ export default class App extends Component {
   }
   padOperate(operator){
     switch(operator){
-      case 'c':
+      case 'DEL':
         this.setState({
           resultText: this.state.resultText.substring(0, this.state.resultText.length-1)
         })
@@ -78,17 +78,17 @@ export default class App extends Component {
       let row = []
       for(let j = 0; j < 3; j++){
         row.push(
-          <TouchableOpacity onPress={() => this.padPressed(this.nums[i][j])} style={styles.pad}>
+          <TouchableOpacity key={this.nums[i][j]} onPress={() => this.padPressed(this.nums[i][j])} style={styles.pad}>
             <Text style={styles.padText}>{this.nums[i][j]}</Text>
           </TouchableOpacity>
         )
       }
-      numpads.push(<View style={styles.row}>{row}</View>);
+      numpads.push(<View key={i} style={styles.row}>{row}</View>);
     }
     let oppads = []
     for(let i = 0; i < 5; i++){
       oppads.push(
-        <TouchableOpacity onPress={() => this.padOperate(this.ops[i])} style={styles.pad}>
+        <TouchableOpacity key={this.ops[i]} onPress={() => this.padOperate(this.ops[i])} style={styles.pad}>
           <Text style={styles.padText}>{this.ops[i]}</Text>
         </TouchableOpacity>
       )
@@ -122,23 +122,23 @@ const styles = StyleSheet.create({
   },
   result: {
     flex: 2,
-    backgroundColor: "red",
+    backgroundColor: "#E3E6DC",
     justifyContent: "center",
     alignItems: "flex-end"
   },
   resultText: {
     fontSize: 30,
-    color: "white"
+    color: "#000000"
   },
   calculation: {
     flex: 1,
-    backgroundColor: "green",
+    backgroundColor: "#DDE4E2",
     justifyContent: "center",
     alignItems: "flex-end"
   },
   calculationText: {
     fontSize: 20,
-    color: "white"
+    color: "#000000"
   },
   buttons: {
     flex: 7,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   numbers: {
     flex: 4,
-    backgroundColor: "yellow"
+    backgroundColor: "#434343"
   },
   row: {
     flex: 1,
@@ -161,11 +161,12 @@ const styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   padText: {
-    fontSize: 30
+    fontSize: 30,
+    color: "white"
   },
   operations: {
     flex: 1,
-    backgroundColor: "blue",
+    backgroundColor: "#636363",
     justifyContent: "space-around",
     alignItems: "center"
   }
