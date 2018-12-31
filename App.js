@@ -27,6 +27,12 @@ export default class App extends Component {
     this.ops = ["c", "+", "-", "*", "/"]
     this.nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ['.', 0, '=']]
   }
+  validate(){
+    const text = this.state.resultText
+    if(this.ops.indexOf(text.slice(-1)) > 0)
+      return false;
+    return true;
+  }
   calculateResult(){
     const text = this.state.resultText
     this.setState({
@@ -61,7 +67,7 @@ export default class App extends Component {
   }
   padPressed(text){
     if(text == '=')
-      return this.calculateResult()
+      return this.validate() && this.calculateResult()
     this.setState({
       resultText: this.state.resultText + text
     })
