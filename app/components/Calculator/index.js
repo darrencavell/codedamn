@@ -87,9 +87,6 @@ class Calculator extends Component {
     }
     return(
       <View style={styles.container}>
-        <View>
-          <Button onPress={() => this.props.navigation.navigate('home')} title="Go to Home"/>
-        </View>
         <View style={styles.result}>
           <Text style={styles.resultText}>
             {this.state.resultText}

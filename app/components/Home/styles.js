@@ -10,7 +10,7 @@ export default StyleSheet.create({
     marginLeft: 0,
     marginRight: 0
   },
-  button: {
+  parent: {
     flex: 1,
     justifyContent: 'center'
   }
