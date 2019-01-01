@@ -14,6 +14,9 @@ class Home extends Component {
     username: '',
     password: ''
   }
+  static navigationOptions = {
+    header: null
+  }
   checkLogin() {
     const {username, password} = this.state;
     if(username === 'darren' && password === 'darren'){
