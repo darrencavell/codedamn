@@ -11,6 +11,7 @@ export default StyleSheet.create({
     marginRight: 0
   },
   button: {
-    fontSize: 15
+    flex: 1,
+    justifyContent: 'center'
   }
 });
