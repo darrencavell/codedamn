@@ -1,33 +1,20 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {
-  Platform, 
-  StyleSheet, 
-  Text, 
-  View,
-  Button,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {DrawerNavigator} from 'react-navigation';
 
-import Home from './app/components/Home';
+import Login from './app/components/Login';
 import Calculator from './app/components/Calculator';
 
-const AppNavigator = createStackNavigator({
-  home: {
-    screen: Home
-  },
-  calculator: {
-    screen: Calculator
+class App extends Component {
+  render(){
+    return(
+      <AppStack />
+    )
   }
-});
+}
 
-export default createAppContainer(AppNavigator);
+const AppStack = DrawerNavigator({
+  login: {screen: Login},
+  calculator: {screen: Calculator}
+})
+
+export default App

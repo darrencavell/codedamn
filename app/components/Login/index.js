@@ -14,9 +14,6 @@ class Home extends Component {
     username: '',
     password: ''
   }
-  static navigationOptions = {
-    header: null
-  }
   checkLogin() {
     const {username, password} = this.state;
     // console.log(JSON.stringify({username,password}));

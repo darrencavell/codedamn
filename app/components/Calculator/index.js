@@ -19,9 +19,6 @@ class Calculator extends Component {
     this.ops = ["DEL", "+", "-", "*", "/"]
     this.nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ['.', 0, '=']]
   }
-  static navigationOptions = {
-    header: null
-  }
   validate(){
     const text = this.state.resultText
     if(this.ops.indexOf(text.slice(-1)) > 0)
