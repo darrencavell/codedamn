@@ -17,7 +17,7 @@ const AppNavigator = createDrawerNavigator({
   login: {screen: Login},
   calculator: {screen: Calculator}
 },{
-  contentComponent: Sidebar
+  contentComponent: ({navigation}) => <Sidebar navigation={navigation}/>
 })
 const AppContainer = createAppContainer(AppNavigator)
 

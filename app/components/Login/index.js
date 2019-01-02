@@ -9,7 +9,7 @@ import {
 
 import styles from './styles';
 
-class Home extends Component {
+class Login extends Component {
   state = {
     username: '',
     password: ''
@@ -50,4 +50,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Login;
