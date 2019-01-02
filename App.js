@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {DrawerNavigator} from 'react-navigation';
+import {createAppContainer, createDrawerNavigator} from 'react-navigation';
 
 import Login from './app/components/Login';
 import Calculator from './app/components/Calculator';
@@ -12,9 +12,10 @@ class App extends Component {
   }
 }
 
-const AppStack = DrawerNavigator({
+const AppNavigator = createDrawerNavigator({
   login: {screen: Login},
   calculator: {screen: Calculator}
 })
+const AppContainer = createAppContainer(AppNavigator)
 
-export default App
+export default AppContainer
