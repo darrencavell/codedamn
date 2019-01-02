@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {createAppContainer, createDrawerNavigator} from 'react-navigation';
 
-import Sidebar from './app/components/Sidebar';
-import Login from './app/components/Login';
-import Calculator from './app/components/Calculator';
+import Sidebar from '@components/Sidebar';
+import Login from '@components/Login';
+import Calculator from '@components/Calculator';
 
 class App extends Component {
   render(){
