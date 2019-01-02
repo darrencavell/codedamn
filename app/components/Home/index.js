@@ -19,13 +19,26 @@ class Home extends Component {
   }
   checkLogin() {
     const {username, password} = this.state;
-    if(username === 'darren' && password === 'darren'){
-      this.props.navigation.navigate('calculator')
-    } else {
-      Alert.alert('Error', 'Username / Password mismatch', [{
-        text: 'Okay'
-      }])
-    }
+    // console.log(JSON.stringify({username,password}));
+    fetch('http://localhost:1111/', {
+      method: 'POST',
+      body: JSON.stringify({username,password})
+    })
+    .then(res => {
+      return res.text()
+    })
+    .then(res => {
+      if (res === '1') {
+        this.props.navigation.navigate('calculator')
+      } else {
+        Alert.alert('Error', 'Username / Password mismatch', [{
+          text: 'Okay'
+        }])
+      }
+    })
+    .catch(error => console.log(error));
+
+
   }
   render(){
     const {parent, heading, input} = styles;
