@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {createAppContainer, createDrawerNavigator} from 'react-navigation';
 
-import Sidebar from '@components/Sidebar';
-import Login from '@components/Login';
-import Calculator from '@components/Calculator';
+import Sidebar from '@views/Sidebar';
+import Login from '@views/Login';
+import Calculator from '@views/Calculator';
+import Tinder from '@views/Tinder';
 
 class App extends Component {
   render(){
@@ -15,7 +16,8 @@ class App extends Component {
 
 const AppNavigator = createDrawerNavigator({
   login: {screen: Login},
-  calculator: {screen: Calculator}
+  calculator: {screen: Calculator},
+  tinder: {screen: Tinder}
 },{
   contentComponent: ({navigation}) => <Sidebar navigation={navigation}/>
 })

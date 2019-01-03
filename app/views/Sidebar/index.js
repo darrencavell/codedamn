@@ -15,12 +15,19 @@ class Sidebar extends Component {
   render(){
     const routes = [
       {
-        title: "Home", 
-        route: "home"
+        id: 1,
+        title: "Login", 
+        route: "login"
       },
       {
-        title: "Dashboard",
-        route: "dashboard"
+        id: 2,
+        title: "Calculator",
+        route: "calculator"
+      },
+      {
+        id: 3,
+        title: "Tinder",
+        route: "tinder"
       }
     ];
     const {link, image} = styles;
@@ -34,7 +41,7 @@ class Sidebar extends Component {
         </View>
         {
           routes.map(page => (
-            <TouchableOpacity style={link} onPress={_ => this.navigate(page.route)}>
+            <TouchableOpacity key={page.id} style={link} onPress={_ => this.navigate(page.route)}>
               <Text>{page.title}</Text>
             </TouchableOpacity>
           ))
